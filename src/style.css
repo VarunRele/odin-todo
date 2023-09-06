@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Marcellus&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-container {
+    display: flex; 
+    justify-content: center; 
+    margin-top: 3rem
+}
+
+.forms {
+    display: flex; 
+    flex-direction: column; 
+    background-color: white; 
+    gap: 1.2rem; 
+    flex-basis: 800px; 
+    flex-grow: 0; 
+    max-width: 80%
+}
+
+.fields {
+    display: flex; 
+    flex-direction: column; 
+    gap: 12px
+}
+
+.btn {
+    width: max-content;
+    align-self: center;
+    padding: 10px 8px;
+    background-color: rgb(87, 87, 255);
+    border-radius: 3px;
+    border: none;
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+}
+
+.form-btn {
+    /* background-color: rgb(0, 255, 0); */
+    color: black;
+}
+
+.btn:hover {
+    background-color: rgb(67, 67, 255);
+    cursor: pointer;
+}
+
+.hidden {
+    visibility: hidden;
+}

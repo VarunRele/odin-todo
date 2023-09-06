@@ -1,10 +1,12 @@
 import Task from './Task'
+import Projects from './Projects'
+import Loadpage from './Loadpage'
+import From from './From'
 
-const t1 = Task()
+const index = () => {
+    Loadpage()
+    From()
+}
 
-t1.setTitle("Helo")
-console.log(t1.getTitle())
+index()
 
-t1.setDescription("Lets goo ")
-console.log(t1.getDescription())
-console.log(t1.getTimeCreated())
