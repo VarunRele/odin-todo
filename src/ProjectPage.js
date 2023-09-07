@@ -1,11 +1,22 @@
 import { loadContainer, singleProjectDisplay } from "./ToggleClass"
+import TaskModal from "./TaskModal"
 
 const ProjectPage = ({ projObj, proj }) => {
     const container_div = singleProjectDisplay.container_div
     container_div.innerHTML = ""
 
-    const title = document.createElement('div')
-    title.innerText = projObj.title
+    const headerDiv = document.createElement('div')
+    headerDiv.classList += "header title"
+
+    const title = document.createElement('h2')
+    title.innerText = projObj.title + ": "
+    title.classList += "project-title"
+
+    const dueDateP = document.createElement('p')
+    dueDateP.innerText = `Due Date: ${projObj.dueDate}`
+    dueDateP.classList += "project-title date"
+
+    appendChildren(headerDiv, [title, dueDateP])
 
     const back_btn = document.createElement('button')
     back_btn.type = 'button'
@@ -15,6 +26,7 @@ const ProjectPage = ({ projObj, proj }) => {
     creatTaskBtn.innerText = 'Add'
 
     const taskUl = document.createElement('ul')
+    taskUl.classList += "task-ul"
     showAllTask(projObj, taskUl)
 
     creatTaskBtn.onclick = () => {
@@ -27,7 +39,7 @@ const ProjectPage = ({ projObj, proj }) => {
         loadContainer.toggleLoad()
     }
 
-    appendChildren(container_div, [title, creatTaskBtn, back_btn, taskUl])
+    appendChildren(container_div, [headerDiv, taskUl, creatTaskBtn, back_btn])
     document.body.appendChild(container_div)
 }
 
@@ -42,8 +54,15 @@ const showAllTask = (proj, ul) => {
     proj.tasks.forEach((task, index) => {
         const taskLi = document.createElement('li')
         taskLi.innerText = task.getTitle()
+        taskLi.classList += "task-li"
         taskLi.id = index
         ul.appendChild(taskLi)
+
+        taskLi.onclick = (e) => {
+            if (e.target === taskLi) {
+                TaskModal(task)
+            }
+        }
     })
 }
 

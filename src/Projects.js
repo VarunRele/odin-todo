@@ -18,15 +18,21 @@ const Projects = ({id, title, description, dueDate, deleted = false}) => {
         project.tasks.push(task)
     }
 
+    const createTaskInPlace = ({ taskTitle, taskDescription, taskPriority }) => {
+        project.tasks.push(Task({ taskTitle, taskDescription, taskPriority }))
+    }
+
     return {
         project,
-        createTask
+        createTask,
+        createTaskInPlace
     }
 }
 
 const ProjectList = (() => {
     let projs = []
     projs.push(Projects({ id: projs.length + 1, title: 'One', description: 'One description', dueDate: '23-4-2023' }))
+    projs[0].createTaskInPlace({taskTitle: "Task for number 1", taskDescription: "Do somethings", taskPriority: 2})
     projs.push(Projects({ id: projs.length + 1, title: 'Two', description: 'Two description', dueDate: '23-4-2023'}))
 
     const createAProject = (proj) => {

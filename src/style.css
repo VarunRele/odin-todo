@@ -21,14 +21,14 @@ html {
     align-items: center;
 }
 
-.project-titles-ul {
+.project-titles-ul, ul {
     list-style: none;
     margin-top: 3rem;
     max-width: 800px;
     width: 80%;
 }
 
-.project-titles-ul li {
+.project-titles-ul li, li {
     border: 1px solid black;
     margin-bottom: 1rem;
     padding: 12px;
@@ -42,6 +42,10 @@ html {
     gap: 16px;
 }
 
+.task-ul .task-li {
+    background: white;
+}
+
 .project-titles-ul li span {
     overflow: hidden;
 }
@@ -49,6 +53,21 @@ html {
 .project-titles-ul li:hover {
     transform: scale(1.06);
     cursor: pointer;
+}
+
+.header {
+    font-size: xx-large;
+    align-self: flex-start;
+    margin-left: 2rem;
+    border-bottom: 2px solid black;
+    width: calc(100% - 4rem);
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+}
+
+.date {
+    font-size: large;
 }
 
 .forms {
@@ -118,4 +137,73 @@ input {
 
 input:focus {
     outline: 2px solid blue;
+}
+
+.modal {
+    width: 500px;
+    height: 500px;
+    background-color: white;
+    border: 1px solid black;
+    position: absolute;
+    top: 20%;
+    left: calc(50% - 250px);
+    border-radius: 15px;
+    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1;
+    grid-template-rows: max-content 1fr max-content;
+}
+
+.close-modal {
+    width: 2rem;
+    border-radius: 15px;
+}
+
+.back {
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.34);
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    left: 0;
+}
+
+.task-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+
+.task-main {
+    padding: 0 15px;
+    border-bottom: 1px solid black;
+    margin-bottom: 12px;
+}
+
+.task-main p {
+    font-style: italic;
+}
+
+.task-main .description-task {
+    font-size: larger;
+    font-style: normal;
+}
+
+.complete-btn {
+    background-color: rgb(0, 219, 0);
+}
+
+.complete-btn:hover {
+    background-color: rgb(0, 195, 0);
+}
+
+.close-modal {
+    background-color: red;
+}
+
+.close-modal:hover {
+    background-color: rgb(206, 0, 0);
 }

@@ -36,7 +36,7 @@ const loadContainer = (() => {
 
 const singleProjectDisplay = (() => {
     const container_div = document.createElement("div")
-    container_div.classList += "hidden"
+    container_div.classList += "container hidden"
 
     const toggleSingleProject = () => {
         container_div.classList.toggle("hidden")

@@ -5,7 +5,7 @@ const Task = ({ taskTitle, taskDescription, taskPriority }) => {
     let task = {
         title: taskTitle,
         description: taskDescription,
-        duedate: getCurrentDateAndTime(),
+        created: getCurrentDateAndTime(),
         priority: taskPriority,
         isComplete: false
     }
