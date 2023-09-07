@@ -1,24 +1,24 @@
 import { Projects, ProjectList } from "./Projects"
-import { formContainer, loadContainer } from "./ToggleClass"
-import './style.css'
+import { formContainer, loadContainer, singleProjectDisplay } from "./ToggleClass"
+import ProjectPage from "./ProjectPage"
+import Icons from './Icons'
 
 const Loadpage = () => {
     const containerDiv = loadContainer.containerDiv
-    
 
     const createProjectButton = document.createElement("button")
-    createProjectButton.classList += "project-create"
+    createProjectButton.classList += "btn-project-create btn"
     createProjectButton.textContent = "Add a Project"
 
     const projectsUl = document.createElement("ul")
-    projectsUl.classList += "project-names"
-    loadContainer.LoadPorj(ProjectListDom, ProjectList.getProjectList(), projectsUl)
-    ProjectListDom(ProjectList.getProjectList(), projectsUl)
-
+    projectsUl.classList += "project-titles-ul"
+    loadContainer.LoadPorj(ProjectListDom, projectsUl)
+    ProjectListDom(projectsUl)
+    
     createProjectButton.onclick = () => {
         loadContainer.toggleLoad()
         formContainer.toggleForm()
-        ProjectListDom(ProjectList.getProjectList(), projectsUl)
+        ProjectListDom(projectsUl)
     }
 
     appendChildren(containerDiv, [createProjectButton, projectsUl])
@@ -31,9 +31,41 @@ const appendChildren = (parentDom, childDoms) => {
     });
 }
 
-const ProjectListDom = (projs, ul) => {
+const ProjectListDom = (ul) => {
     ul.innerHTML = ""
-    projs.map(proj => ul.innerHTML += `<li>${proj.project.title}</li>`)
+    ProjectList.getProjectList().forEach((proj, index) => {
+        if (!proj.project.deleted) {
+            const element = document.createElement('li')
+
+            const plus_add = document.createElement('img')
+            plus_add.src = Icons.add_btn
+            plus_add.width = 15
+
+            const delete_btn = document.createElement('img')
+            delete_btn.src = Icons.delete_btn
+            delete_btn.width = 15
+
+            const title = document.createElement('span')
+            title.innerText = proj.project.title
+
+            element.classList += "project-title-list"
+            element.id = proj.project.id
+
+            appendChildren(element, [title, plus_add, delete_btn])
+            ul.appendChild(element)
+
+            element.addEventListener('click', (e) => {
+                if (e.target === plus_add) {
+                    console.log("add")
+                }
+                
+                ProjectPage({ projObj: proj.project, proj })
+                singleProjectDisplay.toggleSingleProject()
+                loadContainer.toggleLoad()
+            })
+        }
+    })
+
 }
 
 export default Loadpage

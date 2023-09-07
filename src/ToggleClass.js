@@ -15,17 +15,16 @@ const formContainer = (() => {
 const loadContainer = (() => {
     const containerDiv = document.createElement("div")
     containerDiv.classList += "container"
-    let loadproj, projectList, projectUl
+    let loadproj, projectUl
 
-    const LoadPorj = (l, projectListParam, projectUlParam) => {
+    const LoadPorj = (l, projectUlParam) => {
         loadproj = l
-        projectList = projectListParam
         projectUl = projectUlParam
     }
 
     const toggleLoad = () => {
         containerDiv.classList.toggle("hidden")
-        loadproj(projectList, projectUl)
+        loadproj(projectUl)
     }
 
     return {
@@ -35,4 +34,18 @@ const loadContainer = (() => {
     }
 })()
 
-export {formContainer, loadContainer}
+const singleProjectDisplay = (() => {
+    const container_div = document.createElement("div")
+    container_div.classList += "hidden"
+
+    const toggleSingleProject = () => {
+        container_div.classList.toggle("hidden")
+    }
+
+    return {
+        container_div,
+        toggleSingleProject
+    }
+})()
+
+export {formContainer, loadContainer, singleProjectDisplay}

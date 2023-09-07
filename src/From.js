@@ -1,4 +1,3 @@
-import './style.css'
 import { ProjectList } from './Projects'
 import { formContainer, loadContainer } from './ToggleClass'
 
