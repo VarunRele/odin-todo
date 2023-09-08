@@ -4,6 +4,7 @@ import ProjectPage from "./ProjectPage"
 import Icons from './Icons'
 
 const Loadpage = () => {
+    ProjectList.setProjectList()
     const containerDiv = loadContainer.containerDiv
 
     const createProjectButton = document.createElement("button")
@@ -41,9 +42,13 @@ const ProjectListDom = (ul) => {
             plus_add.src = Icons.add_btn
             plus_add.width = 15
 
+            const deleteDiv = document.createElement('div')
+            deleteDiv.className = 'delete-proj'
+
             const delete_btn = document.createElement('img')
             delete_btn.src = Icons.delete_btn
             delete_btn.width = 15
+            deleteDiv.appendChild(delete_btn)
 
             const title = document.createElement('span')
             title.innerText = proj.project.title
@@ -51,7 +56,7 @@ const ProjectListDom = (ul) => {
             element.classList += "project-title-list"
             element.id = proj.project.id
 
-            appendChildren(element, [title, plus_add, delete_btn])
+            appendChildren(element, [title, plus_add, deleteDiv])
             ul.appendChild(element)
 
             element.addEventListener('click', (e) => {
@@ -59,9 +64,16 @@ const ProjectListDom = (ul) => {
                     console.log("add")
                 }
                 
-                ProjectPage({ projObj: proj.project, proj })
-                singleProjectDisplay.toggleSingleProject()
-                loadContainer.toggleLoad()
+                if (e.target === delete_btn) {
+                    ProjectList.deleteProject(index)
+                    ProjectListDom(ul)
+                } else {
+                    ProjectPage({ projObj: proj.project, proj })
+                    singleProjectDisplay.toggleSingleProject()
+                    loadContainer.toggleLoad()
+                }
+
+                
             })
         }
     })

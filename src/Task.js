@@ -3,10 +3,10 @@ import { getCurrentDate, getCurrentDateAndTime } from "./Datet"
 const Task = ({ taskTitle, taskDescription, taskPriority }) => {
     
     let task = {
-        title: taskTitle,
-        description: taskDescription,
+        taskTitle: taskTitle,
+        taskDescription: taskDescription,
         created: getCurrentDateAndTime(),
-        priority: taskPriority,
+        taskPriority: taskPriority,
         isComplete: false
     }
     const setTitle = (txt) => {
@@ -14,7 +14,7 @@ const Task = ({ taskTitle, taskDescription, taskPriority }) => {
     }
 
     const getTitle = () => {
-        return task.title
+        return task.taskTitle
     }
 
     const setDescription = (txt) => {
@@ -22,7 +22,7 @@ const Task = ({ taskTitle, taskDescription, taskPriority }) => {
     }
 
     const getDescription = () => {
-        return task.description 
+        return task.taskDescription 
     }
 
     const getTimeCreated = () => {
@@ -38,6 +38,7 @@ const Task = ({ taskTitle, taskDescription, taskPriority }) => {
         return task
     }
     return {
+        task,
         setTitle,
         getTitle,
         setDescription,

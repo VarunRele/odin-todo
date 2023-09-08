@@ -1,5 +1,6 @@
 import { loadContainer, singleProjectDisplay } from "./ToggleClass"
 import TaskModal from "./TaskModal"
+import TaskCreateFormModal from "./TaskCreateFormModal"
 
 const ProjectPage = ({ projObj, proj }) => {
     const container_div = singleProjectDisplay.container_div
@@ -21,17 +22,20 @@ const ProjectPage = ({ projObj, proj }) => {
     const back_btn = document.createElement('button')
     back_btn.type = 'button'
     back_btn.innerText = 'Back'
+    back_btn.classList += 'btn back-btn'
 
     const creatTaskBtn = document.createElement('button')
-    creatTaskBtn.innerText = 'Add'
+    creatTaskBtn.innerText = 'Add a Task'
+    creatTaskBtn.classList += 'btn task-btn'
 
     const taskUl = document.createElement('ul')
     taskUl.classList += "task-ul"
     showAllTask(projObj, taskUl)
 
     creatTaskBtn.onclick = () => {
-            proj.createTask()
-            showAllTask(projObj, taskUl)
+            // proj.createTask()
+            TaskCreateFormModal({show: showAllTask, projObj, ul: taskUl, proj})
+            // showAllTask(projObj, taskUl)
     }
 
     back_btn.onclick = () => {
@@ -55,12 +59,15 @@ const showAllTask = (proj, ul) => {
         const taskLi = document.createElement('li')
         taskLi.innerText = task.getTitle()
         taskLi.classList += "task-li"
+        if (task.getTaskObject().isComplete) {
+            taskLi.classList += ' completed'
+        }
         taskLi.id = index
         ul.appendChild(taskLi)
 
         taskLi.onclick = (e) => {
             if (e.target === taskLi) {
-                TaskModal(task)
+                TaskModal(task, showAllTask, proj, ul)
             }
         }
     })

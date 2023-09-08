@@ -1,4 +1,4 @@
-const TaskModal = (task) => {
+const TaskModal = (task, show, proj, ul) => {
     const modalBackDiv = document.createElement('div')
     modalBackDiv.className = "back"
     
@@ -32,11 +32,20 @@ const TaskModal = (task) => {
     completeBtn.innerText = "Complete"
     completeBtn.classList += "btn complete-btn"
 
+    const created = document.createElement('p')
+    created.textContent = 'Created on: ' + task.getTaskObject().created
+
+    completeBtn.onclick = () => {
+        task.setComplete()
+        show(proj, ul)
+        document.body.removeChild(modalBackDiv)
+    }
+
     closeBtn.onclick = () => {
         document.body.removeChild(modalBackDiv)
     }
 
-    appendChildren(footDiv, [completeBtn])
+    appendChildren(footDiv, [completeBtn, created])
     appendChildren(mainDiv, [descP, descriptionTaskP])
     appendChildren(headDiv, [taskTitle, closeBtn])
     appendChildren(modalDiv, [headDiv, mainDiv, footDiv])
